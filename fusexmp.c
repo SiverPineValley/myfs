@@ -59,7 +59,7 @@ static int xmp_getattr(const char *path, struct stat *stbuf)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -81,7 +81,7 @@ static int xmp_access(const char *path, int mask)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, mask) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, mask) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -104,7 +104,7 @@ static int xmp_readlink(const char *path, char *buf, size_t size)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -135,7 +135,7 @@ static int xmp_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 	(void) fi;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(opendir(tmpa) != NULL) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(opendir(tmpb) != NULL) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -171,7 +171,7 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -203,7 +203,7 @@ static int xmp_mkdir(const char *path, mode_t mode)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -225,7 +225,7 @@ static int xmp_unlink(const char *path)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
@@ -247,7 +247,7 @@ static int xmp_rmdir(const char *path)
 	int res;
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
-  sprintf(tmpb, "%S%S", global_context.driveB, path);
+  sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
