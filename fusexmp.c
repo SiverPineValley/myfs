@@ -62,10 +62,7 @@ static int xmp_getattr(const char *path, struct stat *stbuf)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
+
   fprintf(stdout, "getattr: %s\n", fullpath);
 
 	res = lstat(fullpath, stbuf);
@@ -84,10 +81,6 @@ static int xmp_access(const char *path, int mask)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, mask) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, mask) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
 
   fprintf(stdout, "access: %s\n", fullpath);
 
@@ -107,10 +100,6 @@ static int xmp_readlink(const char *path, char *buf, size_t size)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
   
   fprintf(stdout, "readlink: %s\n", fullpath);
 
@@ -138,10 +127,6 @@ static int xmp_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(opendir(tmpa) != NULL) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(opendir(tmpb) != NULL) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
 
   fprintf(stdout, "readdir: %s\n", fullpath);
 
@@ -174,10 +159,7 @@ static int xmp_mknod(const char *path, mode_t mode, dev_t rdev)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
+
 	/* On Linux this could just be 'mknod(path, mode, rdev)' but this
 	   is more portable */
 
@@ -229,10 +211,6 @@ static int xmp_unlink(const char *path)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
   
     fprintf(stdout, "unlink: %s\n", fullpath);
     res = unlink(fullpath);
@@ -251,10 +229,7 @@ static int xmp_rmdir(const char *path)
   sprintf(tmpb, "%s%s", global_context.driveB, path);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
-  else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
-  }
+
     fprintf(stdout, "rmdir: %s\n", fullpath);
     res = rmdir(fullpath);
     if (res == -1)
@@ -262,6 +237,7 @@ static int xmp_rmdir(const char *path)
 
   return 0;
 }
+
 //from here I should impelement
 static int xmp_symlink(const char *from, const char *to)
 {
