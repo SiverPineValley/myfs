@@ -204,11 +204,12 @@ static int xmp_mkdir(const char *path, mode_t mode)
   
   sprintf(tmpa, "%s%s", global_context.driveA, path);
   sprintf(tmpb, "%s%s", global_context.driveB, path);
+  printf("%s\n",tmpa);
+  printf("%s\n",tmpb);
   if(access(tmpa, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveA, path);
   else if(access(tmpb, F_OK) == 0) sprintf(fullpath, "%s%s", global_context.driveB, path);
   else { 
-  fprintf(stdout, "Cannot access\n");
-  return -errno;
+  sprintf(fullpath, "%s%s", rand () % 2 == 0 ? global_context.driveA : global_context.driveB, path);
   }
     fprintf(stdout, "mkdir: %s\n", fullpath);
 
